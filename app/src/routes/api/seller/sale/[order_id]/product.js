@@ -12,6 +12,8 @@ let insertSchema = yup.object().shape({
 		.required('Debe indicar una cantidad'),
 	price: yup.number().required().positive('El precio debe ser positivo').integer()
 });
+
+
 let updateSchema = yup.object().shape({
 	order_product_id: yup.number().required().positive('El ID debe ser positivo').integer(),
 	amount: yup
@@ -27,7 +29,7 @@ export async function post({ request, locals, params }) {
 	let item = await request.json();
 
 	try {
-		const isValid = await insertSchema.validateSync(item);
+		await insertSchema.validateSync(item);
 
 		let { rows } = await db.query(
 			`
