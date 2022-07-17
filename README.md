@@ -31,15 +31,23 @@ docker compose up
 ## Pasos para desarrollo
 Prerequisitos:
 - Node.js 16 
+- PostgreSQL 14 preexistente para el desarrollo local
 
 Clonar el repositorio de forma local:
 ```
 git clone https://github.com/demcenco/inacap_store
 ```
-La aplicacion se encuentra en la ruta ```/app``` , posteriormente instalar las dependencias para el desarrollo e iniciar el servidor de desarrollo
+La aplicacion se encuentra en la ruta ```/app``` , posteriormente instalar las dependencias e iniciar el servidor de desarrollo
 ```
 cd ./inacap_store/app
 npm install
 npm run dev
 ```
+
+Ejecutar el SQL que se encuentra en ```/database/init.sql``` en la DB de desarrollo y actualizar ```/app/src/lib/db.js``` con las credenciales de su DB.
+
 La aplicacion estara disponible en http://localhost:3044
+
+## Documentacion & Manual
+
+Podra encontrar la documentacion y el manual de uso en nuestra [Wiki](https://github.com/demcenco/inacap_store/wiki)
