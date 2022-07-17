@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-'EOSQL'
 
 
 CREATE SEQUENCE bussiness_bussiness_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
