@@ -9,20 +9,40 @@
 
 	export let order;
 	async function updateProduct(item) {
-		await put(`seller/sale/${$page.params.order_id}/product`, { item });
-		$alert = { msg: 'Se actualizo el producto', type: 'success' };
-		setTimeout(() => {
-			$alert = false;
-		}, 2500);
-		dispatch('updateTable');
+		const data = await put(`seller/sale/${$page.params.order_id}/product`, {
+			order_product_id: item.order_product_id,
+			amount: item.amount
+		});
+		if (data.error) {
+			$alert = { msg: data.error, type: 'error' };
+			setTimeout(() => {
+				$alert = false;
+			}, 2500);
+		} else {
+			$alert = { msg: 'Se actualizo el producto', type: 'success' };
+			setTimeout(() => {
+				$alert = false;
+			}, 2500);
+			dispatch('updateTable');
+		}
 	}
 	async function deleteProduct(item) {
-		await del(`seller/sale/${$page.params.order_id}/product?id=${item.order_product_id}`);
-		$alert = { msg: 'Se elimino el producto', type: 'warning' };
-		setTimeout(() => {
-			$alert = false;
-		}, 2500);
-		dispatch('updateTable');
+		const { data } = await del(
+			`seller/sale/${$page.params.order_id}/product?id=${item.order_product_id}`
+		);
+		console.log(data);
+		if (data.error) {
+			$alert = { msg: data.error, type: 'error' };
+			setTimeout(() => {
+				$alert = false;
+			}, 2500);
+		} else {
+			$alert = { msg: 'Se elimino el producto', type: 'warning' };
+			setTimeout(() => {
+				$alert = false;
+			}, 2500);
+			dispatch('updateTable');
+		}
 	}
 </script>
 

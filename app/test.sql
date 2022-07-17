@@ -1,6 +1,6 @@
 
 CREATE SEQUENCE bussiness_bussiness_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
-
+CREATE TYPE user_type AS ENUM ('seller','admin');
 CREATE TABLE "public"."bussiness" (
     "bussiness_id" integer DEFAULT nextval('bussiness_bussiness_id_seq') NOT NULL,
     "rut" text NOT NULL,

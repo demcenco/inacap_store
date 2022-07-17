@@ -5,13 +5,26 @@
 	import { page } from '$app/stores';
 	export let search;
 	export let data;
+	import { alert } from '$lib/stores';
+
 	async function searchProduct() {
 		const { products } = await get(`product?search=${search}`);
 		data = products;
 	}
 	async function addProduct(item) {
-		const { product } = await post(`seller/sale/${$page.params.order_id}/product`, { item });
-		dispatch('updateOrder');
+		const data = await post(`seller/sale/${$page.params.order_id}/product`, {
+			product_id: item.product_id,
+			amount: item.amount,
+			price: item.price
+		});
+		if (data.error) {
+			$alert = { msg: data.error, type: 'error' };
+			setTimeout(() => {
+				$alert = false;
+			}, 2500);
+		} else {
+			dispatch('updateOrder');
+		}
 	}
 </script>
 
