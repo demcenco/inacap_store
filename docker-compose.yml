@@ -1,0 +1,33 @@
+version: "2"
+
+services:
+  postgresql:
+    container_name: bazar_data
+    image: postgres
+    ports:
+      - "5446:5432"
+    volumes:
+      - ./database:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_PASSWORD=inacap123
+      - POSTGRES_DB=bazar
+
+  adminer:
+    container_name: bazar_adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8060:8080
+    environment:
+      - ADMINER_DESIGN=pepa-linha
+
+  bazar_app:
+    container_name: bazar_app
+    image: bazar_app
+    restart: on-failure
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 3601:3000

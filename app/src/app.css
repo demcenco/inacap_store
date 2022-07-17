@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media print {
+    .dontPrint{
+        display:none;
+        }
+}
+
+:root {
+    --date-picker-background: #1b1e27;
+    --date-picker-foreground: #f7f7f7;
+  }
