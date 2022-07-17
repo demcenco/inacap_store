@@ -40,7 +40,7 @@ CREATE TABLE "public"."order_product" (
     "amount" integer DEFAULT '1' NOT NULL,
     "price" integer NOT NULL,
     CONSTRAINT "order_product_pkey" PRIMARY KEY ("order_product_id"),
-    CONSTRAINT "order_amount_positive" CHECK ("amount" > 0)
+    CONSTRAINT "order_amount_positive" CHECK ("amount" > 0),
     CONSTRAINT "order_price_psitive" CHECK ("price" > 0)
 ) WITH (oids = false);
 
