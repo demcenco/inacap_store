@@ -2,3 +2,11 @@
 
 
 ## Que es InacapStore?
+
+[InacapStore](https://inacap.store) es una aplicacion web que permite administrar un negocio o bazar, sus principales caracteristicas son: 
+- Administracion de usuarios
+- Administracion del inventario
+- Manejo de turnos
+- Emision de facturas y boletas
+- Sistema de creacion de ordenes
+- Reportes detallados
