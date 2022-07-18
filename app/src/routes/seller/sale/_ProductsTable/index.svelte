@@ -27,7 +27,7 @@
 		}
 	}
 	async function deleteProduct(item) {
-		const { data } = await del(
+		const data = await del(
 			`seller/sale/${$page.params.order_id}/product?id=${item.order_product_id}`
 		);
 		console.log(data);

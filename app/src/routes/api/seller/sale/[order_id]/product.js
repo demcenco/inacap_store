@@ -86,7 +86,7 @@ export async function put({ request, locals, params }) {
 	}
 }
 export async function del({ request, locals, url }) {
-	// let data = await request.json();
+
 	if (locals.user) {
 		const id = url.searchParams.get('id');
 		let { rows } = await db.query(
@@ -97,7 +97,7 @@ export async function del({ request, locals, url }) {
 		`,
 			[id]
 		);
-		return { body: '' };
+		return { body: { data: {} } };
 	}
 	return { body: '' };
 }

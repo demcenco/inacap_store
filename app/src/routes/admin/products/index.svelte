@@ -32,24 +32,31 @@
 	<div class="bg-base-100 p-2 md:p-6 rounded-xl ">
 		<div class="text-center font-bold text-2xl ">Ingresar producto al inventario</div>
 		<div class="space-y-4 mt-3">
+			<span>Nombre</span>
+
 			<input
 				bind:value={producto.nombre}
 				type="text"
 				placeholder="Nombre Producto"
 				class="input input-bordered input-primary w-full"
 			/>
+			<span>Marca</span>
 			<input
 				bind:value={producto.marca}
 				type="text"
 				placeholder="Marca Producto"
 				class="input input-bordered input-primary w-full"
 			/>
+			<span>Descripcion</span>
+
 			<input
 				bind:value={producto.descripcion}
 				type="text"
 				placeholder="Descripcion"
 				class="input input-bordered input-primary w-full"
 			/>
+			<span>Precio</span>
+
 			<input
 				bind:value={producto.precio}
 				type="number"
