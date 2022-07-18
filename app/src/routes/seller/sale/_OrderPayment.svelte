@@ -8,10 +8,10 @@
 	let es_factura = false;
 
 	let bussiness = {
-		name: 'HERMANOS WEONES LIMITADA MENTALMENTE',
-		rut: '1.123.123-2',
-		type: 'Retard Consultants',
-		address: 'La colgante 3044'
+		name: '',
+		rut: '',
+		type: '',
+		address: ''
 	};
 
 	async function finishSale(sale_type) {
