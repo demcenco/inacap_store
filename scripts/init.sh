@@ -119,8 +119,7 @@ INSERT INTO "bussiness" ("bussiness_id", "rut", "name", "type", "address") VALUE
 (9,	'10.492.411-5',	'HERMANOS LAPIZ',	'Educacion',	'Las Brumas 20220'),
 (7,	'13.587.012-9',	'VERDURAS GREENBEAN',	'Mayoristas
 ',	'Los Robles 3029'),
-(10,	'2.311.334-5',	'SOLUCIONES LIMPIEZA',	'Servicio Público',	'Av. Shortstreet 9992'),
-(3,	'1.123.123-2',	'HERMANOS WEONES LIMITADA MENTALMENTE',	'Transporte',	'La Manzana 3044');
+(10,	'2.311.334-5',	'SOLUCIONES LIMPIEZA',	'Servicio Público',	'Av. Shortstreet 9992');
 
 INSERT INTO "product" ("product_id", "name", "desc", "brand", "price", "stock", "last_update") VALUES
 (1,	'Leche',	'Leche Entera',	'Colun',	1090,	99999,	'2022-07-15 22:12:30.161195+00'),
@@ -138,7 +137,23 @@ INSERT INTO "product" ("product_id", "name", "desc", "brand", "price", "stock", 
 (18,	'Coca-Cola sin Azúcar',	'3L',	'Coca-Cola',	2700,	99999,	'2022-07-16 21:48:13.729858+00'),
 (19,	'Pepsi Zero',	'3L',	'Pepsi',	2500,	99999,	'2022-07-16 21:49:04.153779+00'),
 (20,	'Papel Higiénico ',	'8U 25m',	'Confort',	2600,	99999,	'2022-07-16 21:50:51.551552+00'),
-(21,	'Papel Higiénico',	'8U 25m',	'Scott',	3600,	99999,	'2022-07-16 21:52:26.197987+00');
+(21,	'Papel Higiénico',	'8U 25m',	'Scott',	3600,	99999,	'2022-07-16 21:52:26.197987+00'),
+(22,	'Detergente Líquido Concentrado ',	'3L',	'Ariel',	11497,	99999,	'2022-07-17 18:47:59.071056+00'),
+(23,	'Detergente Omo Matic Líquido',	'3L',	'Omo',	12500,	99999,	'2022-07-17 18:48:45.896838+00'),
+(24,	'Shampoo Manzana',	'375Ml',	'Head & Shoulders',	4200,	99999,	'2022-07-17 18:51:26.63324+00'),
+(25,	'Shampoo Camomilla',	'750Ml',	'Familand',	1999,	99999,	'2022-07-17 18:52:35.11473+00'),
+(26,	'Jabón Líquido',	'700Ml',	'Elite',	2099,	99999,	'2022-07-17 18:53:26.527089+00'),
+(27,	'Jabón Líquido Hipoalergénico',	'1L',	'Simond''s',	2190,	99999,	'2022-07-17 18:56:57.712895+00'),
+(29,	'Cloro Gel Lavanda',	'900mL',	'Clorinda',	1715,	99999,	'2022-07-17 18:59:02.838656+00'),
+(30,	'Quitamanchas Polvo',	'450g',	'Vanish',	4990,	99999,	'2022-07-17 18:59:47.293809+00'),
+(31,	'Bolsa Basura Mediana',	'10U 70x90cm',	'Superior',	1100,	99999,	'2022-07-17 19:00:57.343247+00'),
+(32,	'Servilletas Cocktail',	'200U',	'Elite',	1600,	99999,	'2022-07-17 19:01:23.192981+00'),
+(33,	'Esponja Multiuso Lisa',	'4U',	'Virutex',	1300,	99999,	'2022-07-17 19:02:01.624469+00'),
+(34,	'Bolsa Basura Grande',	'10U 80x110cm',	'Superior',	1500,	99999,	'2022-07-17 19:02:45.336045+00'),
+(35,	'Lavalozas Concentrado',	'750Ml',	'Quix',	2400,	99999,	'2022-07-17 19:03:36.113212+00'),
+(36,	'Lavalozas Concentrado Ultra',	'500Ml',	'Magistral',	2800,	99999,	'2022-07-17 19:04:21.793119+00'),
+(28,	'Cloro Gel Limpiador',	'900Ml',	'Cif',	2159,	99999,	'2022-07-17 18:57:59.002939+00'),
+(37,	'Jabón Barra',	'1U',	'Dove',	1000,	99999,	'2022-07-17 21:04:38.54977+00');
 
 INSERT INTO "user" ("user_id", "rut", "password", "email", "name", "last_name", "user_type", "active", "created_at") VALUES
 (1,	'11.111.111-1',	'$2a$10$ZZKWE/0zWZHAQVOxiirceeQdkBlNOHUKU9l5Ue//xojTLAkIgFwEK',	'ostap.dem@inacapmail.cl',	'Ostap',	'Demcenco',	'seller',	'1',	'2022-07-15 15:59:11.75206+00'),
