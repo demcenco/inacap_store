@@ -1,7 +1,7 @@
 import db from '$lib/db';
 import bcryptjs from 'bcryptjs';
 import * as yup from 'yup';
-import { validate } from 'rut.js';
+import { validate, format } from 'rut.js';
 
 const schema = yup.object().shape({
 	name: yup
@@ -42,7 +42,7 @@ export async function post({ request }) {
 		WHERE   email    = $1
 		OR      rut      = $2
 		`,
-			[user.email, user.rut]
+			[user.email, format(user.rut)]
 		);
 		let encrypted_password = await bcryptjs.hash(user.password, 10);
 		if (credentials) {
@@ -53,7 +53,7 @@ export async function post({ request }) {
 		INSERT INTO "user" (name, last_name, password, email, rut,user_type)
 		SELECT  $1,$2,$3,$4,$5 ,'seller'
 		`,
-			[user.name, user.second_name, encrypted_password, user.email, user.rut]
+			[user.name, user.second_name, encrypted_password, user.email, format(user.rut)]
 		);
 		return {
 			body: { user: 'hola' }
