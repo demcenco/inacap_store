@@ -59,7 +59,6 @@ export async function post({ request }) {
 			body: { user: 'hola' }
 		};
 	} catch (error) {
-
 		return {
 			body: { errors: error.errors }
 		};

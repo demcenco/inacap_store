@@ -25,6 +25,12 @@
 			setTimeout(() => {
 				$alert = false;
 			}, 2500);
+		} else {
+			$alert = { msg: 'Registro exitoso, puede ingresar', type: 'success' };
+			setTimeout(() => {
+				$alert = false;
+			}, 2500);
+			goto('/login')
 		}
 	}
 </script>
