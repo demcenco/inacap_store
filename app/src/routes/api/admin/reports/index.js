@@ -6,17 +6,18 @@ function queryData(params) {
 	}
 	return object;
 }
-export async function get({ url }) {
+export async function get({ url, locals }) {
 	const query = queryData(url.searchParams);
-
-	const { rows } = await db.query(
-		/*sql*/ `
+	if (locals.user) {
+		const { rows } = await db.query(
+			/*sql*/ `
         WITH main_data AS 
         (
             SELECT      b.closed_at::date,
                         count(a.*) FILTER ( WHERE completed = true) total_ventas,
                         count(a.*) FILTER ( WHERE b.bussiness_id IS NOT NULL) facturas,
-                        count(a.*) FILTER ( WHERE b.bussiness_id IS NULL) boletas
+                        count(a.*) FILTER ( WHERE b.bussiness_id IS NULL) boletas,
+                        sum(b.total) suma_ventas
             FROM        "order" a
             JOIN        "sale"  b USING (order_id)
             WHERE       a.completed = true
@@ -62,16 +63,18 @@ export async function get({ url }) {
 
 
     `,
-		[
-			query.seller_id,
-			query.per_page,
-			query.page,
-			new Date(query.start_date).toISOString(),
-			new Date(query.end_date).toISOString()
-		]
-	);
+			[
+				query.seller_id,
+				query.per_page,
+				query.page,
+				new Date(query.start_date).toISOString(),
+				new Date(query.end_date).toISOString()
+			]
+		);
 
-	return { body: { data: rows } };
+		return { body: { data: rows } };
+	}
+	return { body: {} };
 }
 
 // SELECT       b.first_name || ' ' || b.second_name nombre,

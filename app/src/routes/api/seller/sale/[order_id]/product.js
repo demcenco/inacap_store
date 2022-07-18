@@ -13,7 +13,6 @@ let insertSchema = yup.object().shape({
 	price: yup.number().required().positive('El precio debe ser positivo').integer()
 });
 
-
 let updateSchema = yup.object().shape({
 	order_product_id: yup.number().required().positive('El ID debe ser positivo').integer(),
 	amount: yup
@@ -29,10 +28,11 @@ export async function post({ request, locals, params }) {
 	let item = await request.json();
 
 	try {
-		await insertSchema.validateSync(item);
+		if (locals.user) {
+			await insertSchema.validateSync(item);
 
-		let { rows } = await db.query(
-			`
+			let { rows } = await db.query(
+				`
 				WITH insert_product AS 
 				(
 					INSERT INTO     order_product(order_id,product_id, amount,price)
@@ -50,23 +50,24 @@ export async function post({ request, locals, params }) {
 			
 	
 		`,
-			[params.order_id, item.product_id, item.amount]
-		);
+				[params.order_id, item.product_id, item.amount]
+			);
 
-		return { body: { product: rows[0] } };
+			return { body: { product: rows[0] } };
+		}
+		return { body: {} };
 	} catch (error) {
 		return { body: { error: error.errors[0] } };
 	}
 }
 export async function put({ request, locals, params }) {
 	let item = await request.json();
-
-	console.log(item);
 	try {
-		const isValid = await updateSchema.validateSync(item);
+		if (locals.user) {
+			const isValid = await updateSchema.validateSync(item);
 
-		let { rows } = await db.query(
-			`
+			let { rows } = await db.query(
+				`
         UPDATE  order_product AS a
         SET     amount = $1
 		FROM 	"order" AS b
@@ -74,25 +75,29 @@ export async function put({ request, locals, params }) {
         AND   	order_product_id = $2
 		AND		b.completed = false
 	`,
-			[item.amount, item.order_product_id]
-		);
+				[item.amount, item.order_product_id]
+			);
 
-		return { body: { product: '1' } };
+			return { body: { product: '1' } };
+		}
+		return { body: {} };
 	} catch (error) {
 		return { body: { error: error.errors[0] } };
 	}
 }
 export async function del({ request, locals, url }) {
 	// let data = await request.json();
-
-	const id = url.searchParams.get('id');
-	let { rows } = await db.query(
-		`
+	if (locals.user) {
+		const id = url.searchParams.get('id');
+		let { rows } = await db.query(
+			`
         DELETE  FROM order_product
         WHERE   order_product_id = $1
-
-	`,
-		[id]
-	);
+		
+		`,
+			[id]
+		);
+		return { body: '' };
+	}
 	return { body: '' };
 }

@@ -4,13 +4,8 @@ import { serialize, parse } from 'cookie';
 import jwt from 'jsonwebtoken';
 import * as yup from 'yup';
 
-let mi_secreto = 'ElBenjaSeLaComeConLosPlatosRotos420_no_scope';
+let mi_secreto = 'Mi_Secreto';
 
-// // Deserializo los datos que trae el formulario
-
-// let cookies = await parse(request.headers.get('cookie'))
-
-// let verify = await jwt.verify(cookies.session_bazar, mi_secreto)
 
 const schema = yup.object().shape({
 	email: yup.string().email().required(),

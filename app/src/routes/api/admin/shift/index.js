@@ -15,9 +15,9 @@ export async function get() {
 
 export async function post({ locals }) {
 	let { user } = locals;
-
-	let { rows } = await db.query(
-		`
+	if (user) {
+		let { rows } = await db.query(
+			`
 			INSERT INTO "shift"("user_id")
 			SELECT       user_id
 			FROM        "user"
@@ -26,19 +26,20 @@ export async function post({ locals }) {
 			RETURNING *
 
 	    `,
-		[user.user_id]
-	);
-	let data = await getShift();
+			[user.user_id]
+		);
+		let data = await getShift();
 
-	return { body: { data } };
+		return { body: { data } };
+	}
+	return { body: {} };
 }
 
 export async function put({ request, locals }) {
 	let { shift_id } = await request.json();
-
-
-	let { rows } = await db.query(
-		`
+	if (locals.user) {
+		let { rows } = await db.query(
+			`
 			UPDATE "shift"
 			SET     active = false,
 			updated_at = NOW()
@@ -46,8 +47,10 @@ export async function put({ request, locals }) {
 			RETURNING *
 
 			`,
-		[shift_id]
-	);
-	let data = await getShift();
-	return { body: { data } };
+			[shift_id]
+		);
+		let data = await getShift();
+		return { body: { data } };
+	}
+	return { body: {} };
 }

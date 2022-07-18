@@ -1,9 +1,9 @@
 import db from '$lib/db';
 
-export async function get({ request, params }) {
-
-	const { rows } = await db.query(
-		`
+export async function get({ request, params, locals }) {
+	if (locals.user) {
+		const { rows } = await db.query(
+			`
         WITH productos AS 
         (
 
@@ -30,8 +30,10 @@ export async function get({ request, params }) {
         GROUP BY    b.*
 
         `,
-		[params.order_id]
-	);
+			[params.order_id]
+		);
 
-	return { body: { data: rows } };
+		return { body: { data: rows } };
+	}
+	return { body: {} };
 }

@@ -1,1 +1,1 @@
-export const mi_secreto = 'ElBenjaSeLaComeConLosPlatosRotos420_no_scope';
+export const mi_secreto = 'Mi_Secreto';

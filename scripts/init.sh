@@ -95,7 +95,7 @@ CREATE TABLE "public"."user" (
     "name" text NOT NULL,
     "last_name" text NOT NULL,
     "user_type" user_type,
-    "active" boolean DEFAULT false NOT NULL,
+    "active" boolean DEFAULT true NOT NULL,
     "created_at" timestamptz DEFAULT now() NOT NULL,
     CONSTRAINT "users_pkey" PRIMARY KEY ("user_id")
 ) WITH (oids = false);
@@ -143,7 +143,7 @@ INSERT INTO "product" ("product_id", "name", "desc", "brand", "price", "stock", 
 INSERT INTO "user" ("user_id", "rut", "password", "email", "name", "last_name", "user_type", "active", "created_at") VALUES
 (1,	'11.111.111-1',	'$2a$10$ZZKWE/0zWZHAQVOxiirceeQdkBlNOHUKU9l5Ue//xojTLAkIgFwEK',	'ostap.dem@inacapmail.cl',	'Ostap',	'Demcenco',	'seller',	'1',	'2022-07-15 15:59:11.75206+00'),
 (3,	'5.126.663-3',	'$2a$10$ca3gpUDfW9h1gw/QUrtSoefV6FfTiOJqld0F5lx6CHsA/mafakeDe',	'benjamin.gomez@inacapmail.cl',	'Benjamin',	'Gomez',	'seller',	'1',	'2022-07-16 19:06:19.490153+00'),
-(2,	'11.111.111-2',	'$2a$10$J5Zq7/bmQkARGCubplIxNu30gUufSQrIeg2etH19RWLFYKXHUio8a',	'admin',	'admin',	'admin',	'admin',	'1',	'2022-07-15 15:59:11.75206+00'),
+(2,	'11.111.111-2',	'$2a$10$gnChC9gX8m3v3NXHz8Jrh.nDLDiffk8A/HKV/byz4G5KKxJejorp6',	'admin',	'admin',	'admin',	'admin',	'1',	'2022-07-15 15:59:11.75206+00'),
 (4,	'5.126.632-3',	'$2a$10$ls/2B.fVw.hPePLRcteKv.Fjgep9Hq5tJRUghNp5Ygcy5ggYUU6Ny',	'martin.pizarro@inacapmail.cl',	'Martin',	'Pizarro',	'seller',	'1',	'2022-07-17 17:37:29.209386+00');
 
 

@@ -2,9 +2,9 @@ import db from '$lib/db';
 
 export async function get({ request, locals }) {
 	const { user } = locals;
-
-	let { rows } = await db.query(
-		`
+	if (locals.user) {
+		let { rows } = await db.query(
+			`
 		WITH current_shift AS 
 		(
 			SELECT     *
@@ -23,8 +23,10 @@ export async function get({ request, locals }) {
 			FROM 	total_sales b
 			LEFT JOIN current_shift a ON true
     `,
-		[user.user_id]
-	);
+			[user.user_id]
+		);
 
-	return { body: { shift: rows } };
+		return { body: { shift: rows } };
+	}
+	return { body: {} };
 }

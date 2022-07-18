@@ -30,7 +30,7 @@
 			<span class="text-sm">
 				<span>No tienes cuenta?</span>
 
-				<a href="/register" class="link link-secondary">Registrarse</a>
+				<a href="/register" class="link link-secondary">Registrate</a>
 			</span>
 		</div>
 		{#if errors}
@@ -70,13 +70,13 @@
 				</div>
 				<button class="btn btn-accent btn-block rounded-full mt-2" type="submit">Ingresar</button>
 			</form>
-			<button
+			<!-- <button
 				class="btn btn-accent btn-block rounded-full mt-2"
 				on:click={() => {
 					username = 'admin';
 					submit();
 				}}>Ingresar Admin</button
-			>
+			> -->
 		</div>
 	</div>
 </div>

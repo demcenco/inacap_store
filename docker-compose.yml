@@ -20,7 +20,6 @@ services:
       - 8060:8080
     environment:
       - ADMINER_DESIGN=pepa-linha
-
   bazar_app:
     container_name: bazar_app
     image: bazar_app

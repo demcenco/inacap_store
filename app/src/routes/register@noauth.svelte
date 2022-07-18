@@ -4,12 +4,12 @@
 	import { goto } from '$app/navigation';
 	import { alert } from '$lib/stores';
 	let user = {
-		name: 'Benjamin',
-		second_name: 'Gomez',
-		email: 'benjamin.gomez@inacapmail.cl',
-		rut: '5.126.663-3',
-		password: '123123',
-		repeat_password: '123123'
+		name: '',
+		second_name: '',
+		email: '',
+		rut: '',
+		password: '',
+		repeat_password: ''
 	};
 	let errors = null;
 	async function submit(event) {
@@ -66,13 +66,13 @@
 			</div>
 			<div class="w-full">
 				<div class="text-sm font-semibold ">Clave</div>
-				<input bind:value={user.password} type="text" class="input  input-bordered  w-full " />
+				<input bind:value={user.password} type="password" class="input  input-bordered  w-full " />
 			</div>
 			<div class="w-full">
 				<div class="text-sm font-semibold ">Repetir Clave</div>
 				<input
 					bind:value={user.repeat_password}
-					type="text"
+					type="password"
 					class="input  input-bordered  w-full "
 				/>
 			</div>

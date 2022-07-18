@@ -21,6 +21,7 @@
 
 <script>
 	import { get } from '$lib/api';
+	import { formato } from '$lib/utils';
 	import FilterReports from './_FilterReports.svelte';
 	import ReportPagination from './_ReportPagination.svelte';
 
@@ -48,10 +49,11 @@
 					<th>Total Ventas </th>
 					<th>Total Boletas</th>
 					<th>Total Facturas</th>
+					<th>Suma Ventas</th>
 					<th />
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="font-semibold">
 				{#if orders}
 					<!-- content here -->
 
@@ -68,6 +70,9 @@
 							</td>
 							<td>
 								{item.facturas}
+							</td>
+							<td>
+								$ {formato(item.suma_ventas)}
 							</td>
 							<td>
 								<a

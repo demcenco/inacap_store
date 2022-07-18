@@ -26,7 +26,7 @@
 	import { goto } from '$app/navigation';
 	import { post } from '$lib/api';
 	export let shift, data, pagination;
-
+	console.log(data);
 	import SalesTable from './_SalesTable.svelte';
 	async function startSale() {
 		const { order_id } = await post('seller/sale');

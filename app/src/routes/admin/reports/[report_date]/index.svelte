@@ -3,7 +3,6 @@
 	import dayjs from 'dayjs';
 
 	export async function load({ fetch, params, url }) {
-	
 		let res = await fetch(
 			`/api/admin/reports/detailed?date=${params.report_date}&seller_id=${url.searchParams.get(
 				'seller_id'
@@ -11,7 +10,7 @@
 		);
 
 		let { data } = await res.json();
-	
+
 		return { props: { data } };
 	}
 </script>
@@ -28,7 +27,9 @@
 	}
 </script>
 
-<div class="overflow-x-auto ring  ring-slate-400 ring-opacity-40 rounded-lg shadow-xl font-semibold">
+<div
+	class="overflow-x-auto ring  ring-slate-400 ring-opacity-40 rounded-lg shadow-xl font-semibold"
+>
 	<table class="table w-full">
 		<!-- head -->
 		<thead>
@@ -51,7 +52,9 @@
 					<td>{item.order_id}</td>
 					<td>{dayjs(item.created_at).format('DD-MM-YYYY')}</td>
 					<td class="capitalize">
-						{item.bussiness_id ? 'Factura' : 'Boleta'}
+						<div class="badge" class:badge-secondary={item.bussiness_id}>
+							{item.bussiness_id ? 'Factura' : 'Boleta'}
+						</div>
 					</td>
 					<td>
 						{item.seller}

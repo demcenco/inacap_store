@@ -6,16 +6,16 @@ function queryData(params) {
 	}
 	return object;
 }
-export async function get({ request, url }) {
+export async function get({ request, url, locals }) {
 	const query = queryData(url.searchParams);
-
-	const { rows } = await db.query(
-		`
+	if (locals.user) {
+		const { rows } = await db.query(
+			`
     SELECT      a.order_id, 
-                d.closed_at::date,
-                b.name || ' ' || b.last_name seller,  
-                d.bussiness_id,
-                SUM(c.price * c.amount) total_sale
+    d.closed_at::date,
+    b.name || ' ' || b.last_name seller,  
+    d.bussiness_id,
+    SUM(c.price * c.amount) total_sale
     FROM        "order" a
     JOIN        "user" b USING(user_id)
     JOIN        "order_product_v" c USING (order_id)
@@ -24,15 +24,17 @@ export async function get({ request, url }) {
     AND         completed = true
     AND         CASE WHEN $2::int != 0 THEN b.user_id = $2 ELSE true END
     GROUP BY    a.order_id, 
-                b.name, 
-                b.last_name,
-                d.closed_at::date,
-                d.bussiness_id
+    b.name, 
+    b.last_name,
+    d.closed_at::date,
+    d.bussiness_id
     `,
-		[query.date, query.seller_id]
-	);
+			[query.date, query.seller_id]
+		);
 
-	return { body: { data: rows } };
+		return { body: { data: rows } };
+	}
+	return { body: {} };
 }
 // SELECT      a.order_id,
 //             a.sale_type,
