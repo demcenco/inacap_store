@@ -1,9 +1,16 @@
 <script>
 	import { del, post, put } from '$lib/api';
+	import { alert } from '$lib/stores';
 
 	export let products;
 	async function updateProduct(product) {
-		await put(`admin/products`, { product });
+		const data = await put(`admin/products`, { product });
+		if (data.error) {
+			setTimeout(() => {
+				$alert = false;
+			}, 2000);
+			$alert = { msg: data.error, type: 'error' };
+		}
 	}
 	async function deleteProduct(product_id, index) {
 		await del(`admin/products?product_id=${product_id}`);

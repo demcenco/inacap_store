@@ -5,7 +5,6 @@
 	import SearchProduct from './_SearchProduct.svelte';
 	export let products;
 	let producto = {
-		categoria: null,
 		nombre: '',
 		marca: '',
 		descripcion: '',
@@ -13,18 +12,24 @@
 	};
 	async function agregarProducto() {
 		const data = await post('admin/products', { producto });
-		producto = {
-			categoria: null,
-			nombre: '',
-			marca: '',
-			descripcion: '',
-			precio: 0
-		};
 
-		$alert = { msg: 'Producto ingresado', type: 'success' };
-		setTimeout(() => {
-			$alert = false;
-		}, 2000);
+		if (data.error) {
+			setTimeout(() => {
+				$alert = false;
+			}, 2000);
+			$alert = { msg: data.error, type: 'error' };
+		} else {
+			setTimeout(() => {
+				$alert = false;
+			}, 2000);
+			$alert = { msg: 'Producto ingresado', type: 'success' };
+			producto = {
+				nombre: '',
+				marca: '',
+				descripcion: '',
+				precio: 0
+			};
+		}
 	}
 </script>
 
@@ -47,7 +52,7 @@
 				placeholder="Marca Producto"
 				class="input input-bordered input-primary w-full"
 			/>
-			<span>Descripcion</span>
+			<span class="-mb-2 mt-1">Descripcion</span>
 
 			<input
 				bind:value={producto.descripcion}
